@@ -38,8 +38,6 @@ function transfer(fromAccount, toAccount, amount) {
     return fromAccount.balance
 }
 
-
-
 // Output
 console.log(deposit(account1, 50)); // Output: 150
 console.log(withdraw(account1, 30)); // Output: 120

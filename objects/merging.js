@@ -25,23 +25,35 @@ const signedUpUser = {
 
 
 // spread operator { ... }
+const newUserWSpread = { ...profile, ...signedUpUser};
 
-const newUserWSpread = { ...profile, ...signedUpUser}; // "js please spread all the properties inside of profile"
+// rest operator { ... }
+function sum(a, b, ...nums) {
+    console.log(a, b, nums)
+};
 
+sum(22, 44, 99, 33, 66, 88);
+
+// Merging using Object.assign()
 const newUser = Object.assign({},profile, signedUpUser);
 newUser.password = "betterPassword123"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // console.log("combinedObject", newUser);
 // console.log("combinedObject", newUserWSpread);
 // console.log("emptyProfileObject", profile)
 // console.log("signUpObject", signedUpUser)
-
-
-// rest operator { ... }
-
-function sum(a, b, ...nums) { // ...nums is the "rest" of the parameters
-    // sum all the parameters
-    console.log(a, b, nums)
-};
-
-sum(22, 44, 99, 33, 66, 88);
