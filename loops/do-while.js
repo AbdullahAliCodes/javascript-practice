@@ -11,4 +11,10 @@ do {
     i++
 }
 while (i < text.length)
+
 console.log(finalValue);
+
+
+
+
+
