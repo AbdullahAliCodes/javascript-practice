@@ -30,10 +30,3 @@ console.log(fruits);
 
 
 
-const vegetables = ["brotato", 
-    "kebabs", "ice cream", "onion"];
-// removes the FIRST element
-vegetables.shift()
-// adds and element at the START of the array
-vegetables.unshift("rogni naan")
-// console.log(vegetables)
