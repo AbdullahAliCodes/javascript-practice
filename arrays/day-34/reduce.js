@@ -69,4 +69,4 @@ posts.pop();
 // `)
 // })
 
-console.log(posts.find( (item) => item.id == 2 ))
+console.log(posts.reduce( (acc, item) => console.log(acc)))

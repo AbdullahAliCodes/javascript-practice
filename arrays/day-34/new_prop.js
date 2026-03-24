@@ -1,7 +1,9 @@
+// iterate over all posts - use template literals & log 
+
 const post = {
     id: "1",
     likes: 20,
-    username: "akhilboddu",
+    username: "uncledullaz",
     timestamp: "15:45",
     comments: []
 };
@@ -10,11 +12,10 @@ const posts = [
     {
         id: "0",
         likes: 20,
-        username: "akhilboddu",
+        username: "uncledullaz",
         timestamp: "15:45",
         comments: [
             {
-                username: "akhilboddu",
                 comment: "Nice picture",
                 id: "xhabjjdsASDddsa",
             },
@@ -27,28 +28,28 @@ posts.push(
     post, 
         {
             id: "2",
-            likes: 25,
-            username: "asifhassam14",
+            likes: 0,
+            username: "c.ronaldo",
             timestamp: "16:45",
             comments: []
         },
         {
             id: "3",
-            likes: 51,
-            username: "zaio",
+            likes: 0,
+            username: "apple",
             timestamp: "17:45",
             comments: []
         },
         {
             id: "4",
-            likes: 100,
-            username: "imharjotsingh",
+            likes: 0,
+            username: "man-united",
             timestamp: "18:45",
             comments: []
         },
         {
             id: "5",
-            likes: 12,
+            likes: 0,
             username: "modaymotivation",
             timestamp: "18:45",
             comments: []
@@ -58,15 +59,7 @@ posts.push(
 // pop the last element from this array 
 posts.pop();
 
-// iterate over the elements - forEach 
-// const postsWithShares = posts.map( (item, index) => {
-//     return {...item, shares: 0};
-// }).forEach((item, index) => {
-//     console.log(`
-//     ${item.username}  | ${item.timestamp}
-//     IMAGE
-//     ${item.likes} likes | ${item.comments.length} comments | 10 ${item.shares}
-// `)
-// })
 
-console.log(posts.find( (item) => item.id == 2 ))
+posts.map((item, index) => {
+    return {...item, shares: 0};
+});

@@ -27,28 +27,28 @@ posts.push(
     post, 
         {
             id: "2",
-            likes: 0,
+            likes: 25,
             username: "asifhassam14",
             timestamp: "16:45",
             comments: []
         },
         {
             id: "3",
-            likes: 0,
+            likes: 51,
             username: "zaio",
             timestamp: "17:45",
             comments: []
         },
         {
             id: "4",
-            likes: 0,
+            likes: 100,
             username: "imharjotsingh",
             timestamp: "18:45",
             comments: []
         },
         {
             id: "5",
-            likes: 0,
+            likes: 12,
             username: "modaymotivation",
             timestamp: "18:45",
             comments: []
@@ -58,18 +58,14 @@ posts.push(
 // pop the last element from this array 
 posts.pop();
 
-// add a new property called shares
+// iterate over the elements - forEach 
 const postsWithShares = posts.map( (item, index) => {
     return {...item, shares: 0};
+}).forEach((item, index) => {
+    console.log(`
+    ${item.username}  | ${item.timestamp}
+    IMAGE
+    ${item.likes} likes | ${item.comments.length} comments | 10 ${item.shares}
+`)
 })
 
-console.log(postsWithShares);
-
-// iterate over the elements - forEach 
-// posts.forEach((item, index) => {
-//     console.log(`
-//     ${item.username}  | ${item.timestamp}
-//     IMAGE
-//     ${item.likes} likes | ${item.comments.length} comments | 10 shares
-// `)
-// })
