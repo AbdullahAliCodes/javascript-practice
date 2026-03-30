@@ -2,12 +2,17 @@ class Person {
     constructor(name,age) {
         this.name = name;
         this.age = age;
+        this.job = "";
     }
     getName = () => {
         return this.name;
     }
     getAge = () => {
         return this.age;
+    }
+
+    setJob = (job) => {
+        this.job = job;
     }
 }
 
@@ -35,13 +40,7 @@ class House {
 }
 
 let Pedro = new Person("Pedro", 19);
-let David = new Person("David", 21);
-
-let house = new House("31 Bob Street", 2800000, [Pedro, David]);
-
-console.log(house.getResidents());
-
-let Paulo = new Person("Paulo", 19);
-house.addResident(Paulo);
-
+let house = new House("81 Joha Street", 20000000, [] );
+Pedro.setJob("Developer");
+house.addResident(Pedro);
 console.log(house.getResidents());
