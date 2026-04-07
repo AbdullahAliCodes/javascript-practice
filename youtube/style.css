@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*  NAV BAR STYLING */
+nav {
+    height: 56px;
+    width: 100%;
+    background-color: red;
+}
+
+/* MAIN AREA */
+main {
+    height: calc(100vh - 56px);
+    display: flex;
+}
+
+.menu-sidebar-section {
+    padding: 12px;
+    width: 216px;
+    height: fit-content;
+}
+.menu-sidebar-item {
+    height: 40px;
+    width: 204px;
+    background-color: lightblue;
+}
+
+.menu-sidebar {
+    width: 240px;
+    height: 100%;
+    display: flex;
+    flex-direction: column; 
+}
+
+.seperator-section {
+    width: 20px;
+    height: 100%;
+    background-color: pink;
+}
+
+.main-area-right {
+    background-color: yellow;
+    width: calc(100vw - 240px);
+    height: 100%;
+}

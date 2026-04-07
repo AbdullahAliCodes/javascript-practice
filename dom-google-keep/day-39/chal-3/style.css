@@ -1,0 +1,42 @@
+/* CSS Styling  */
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 50px;
+}
+
+form {
+  display: inline-block;
+}
+
+label {
+  margin-right: 10px;
+}
+
+input {
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: rgb(76, 175, 80);
+}
+
+#hoverMessage {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: rgb(240, 240, 240);
+  border: 1px solid #ccc;
+  display: none;
+}
+
+#hoverMessage:hover {
+  background-color: rgb(221, 221, 221);
+}
