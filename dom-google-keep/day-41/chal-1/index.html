@@ -8,16 +8,15 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- HTML Structure  -->
-    <div>
-        <input type="text" id="input1" />
-        <button id="btn1">Focus on Input 1</button>
-        <input type="text" id="input2" />
-        <button id="btn2">Focus on Input 2</button>
-        <input type="text" id="input3" />
-        <button id="btn3">Focus on Input 3</button>
-    </div>
+<!-- HTML Structure  -->
+<div class="container">
+    <label for="inputField">Enter a Value:</label>
+    <input type="text" id="inputField" />
+    <button id="assignButton">Assign Value</button>
 
-    <script src="index.js"></script>
+    <p id="assignedValue">Assigned Value: <span id="displayedValue"></span></p>
+</div>
+
+<script src="index.js"></script>
 </body>
 </html>

@@ -8,7 +8,15 @@ class Note {
 
 class App {
     constructor() {
-        this.notes = [new Note("abc1", "test title", "test text")];
+
+        // Local Storage Example:
+        // localStorage.setItem("test", JSON.stringify(["123"]));
+        // console.log(JSON.parse(localStorage.getItem("test")));
+
+        this.notes =JSON.parse(localStorage.getItem("notes")) || [];
+        console.log(this.notes);
+        this.selectedNoteId = "";
+        this.miniSidebar = true;
 
         this.$activeForm = document.querySelector(".active-form");
         this.$inactiveForm = document.querySelector(".inactive-form");
@@ -21,19 +29,21 @@ class App {
         this.$modalTitle = document.querySelector("#modal-title");
         this.$modalText = document.querySelector("#modal-text");
         this.$formContainer = document.querySelector(".form-container");
-
-        console.log(this.$formContainer.classList)
+        this.$closeModalForm = document.querySelector("#modal-btn");
+        this.$sidebar = document.querySelector(".sidebar");
+        this.$sidebarActiveItem = document.querySelector(".active-item");
 
         this.addEventListerners();
         this.displayNotes();
     }
 
     addEventListerners() {
-        document.body.addEventListener("click", () => {
+        document.body.addEventListener("click", (event) => {
             this.handleFormClick(event);
             this.closeModal(event);
             this.openModal(event);
-        })
+            this.handleArchiving(event);
+        });
 
         this.$form.addEventListener("submit", (event) => {
             event.preventDefault();
@@ -41,13 +51,17 @@ class App {
             const text = this.$noteText.value;
             this.addNote({ title, text });
             this.closeActiveForm();
-        })
+        });
 
-        this.$modal.addEventListener("click", () => {
-            console.log("modal clicked");
+        this.$closeModalForm.addEventListener("click", (event) => {
+            event.preventDefault();
         })
-
-        
+        this.$sidebar.addEventListener("mouseover", (event) => {
+            this.handleToggleSidebar();
+        });
+        this.$sidebar.addEventListener("mouseout", (event) => {
+            this.handleToggleSidebar();
+        })
     }
 
     handleFormClick(event) {
@@ -80,19 +94,40 @@ class App {
 
     openModal(event) {
         const $selectedNote = event.target.closest(".note");
-        if($selectedNote) {
+        if($selectedNote && !event.target.closest(".archive")) {
+            this.selectedNoteId = $selectedNote.id;
             this.$modalTitle.value = $selectedNote.children[1].innerHTML;
             this.$modalText.value = $selectedNote.children[2].innerHTML;
             this.$modal.classList.add("open-modal");
+        }
+        else {
+            return;
         }
     }
 
     closeModal(event) {
         const isModalFormClickedOn = this.$modalForm.contains(event.target);
-        if(!isModalFormClickedOn && this.$modal.classList.contains("open-modal")) {
+        const isClosedModalFormBtnClickedOn = this.$closeModalForm.contains(event.target);
+        console.log(isClosedModalFormBtnClickedOn);
+        if((!isModalFormClickedOn || isClosedModalFormBtnClickedOn) && this.$modal.classList.contains("open-modal")) {
+            this.editNote(this.selectedNoteId, {title: this.$modalTitle.value, text: this.$modalText.value});
             this.$modal.classList.remove("open-modal");
         }
     }
+
+    // DELETE
+    // Delete a note
+    handleArchiving(event) {
+        const $selectedNote = event.target.closest(".note");
+        if($selectedNote && event.target.closest(".archive")) {
+            this.selectedNoteId = $selectedNote.id;
+            this.deleteNote(this.selectedNoteId);
+        }
+        else {
+            return;
+        }
+    }
+
     
     // CREATE
     // Add a note
@@ -100,7 +135,7 @@ class App {
         if (text != "") {
             const newNote = new Note(crypto.randomUUID(), title, text);
             this.notes = [...this.notes, newNote];
-            this.displayNotes();
+            this.render();
         }
     }
 
@@ -113,31 +148,57 @@ class App {
                 note.text = text;
             }
             return note;
-        })
+        });
+        this.render();
     }
 
     // DELETE
     // Delete a note
     deleteNote(id) {
         this.notes = this.notes.filter(note => note.id != id);
+        this.render();
     }
 
     handleMouseOverNote(element) {
-        const $note = document.querySelector("#" + element.id);
-        const $checkNote = $note.querySelector(".check-circle");
-        const $noteFooter = $note.querySelector(".note-footer");
+        const $checkNote = element.querySelector(".check-circle");
+        const $noteFooter = element.querySelector(".note-footer");
 
         $checkNote.style.visibility = "visible";
         $noteFooter.style.visibility = "visible";
     }
 
     handleMouseOutNote(element) {
-        const $note = document.querySelector("#" + element.id);
-        const $checkNote = $note.querySelector(".check-circle");
-        const $noteFooter = $note.querySelector(".note-footer");
-
+        const $checkNote = element.querySelector(".check-circle");
+        const $noteFooter = element.querySelector(".note-footer");
+        
         $checkNote.style.visibility = "hidden";
         $noteFooter.style.visibility = "hidden";
+    }
+
+    handleToggleSidebar() {
+        if(this.miniSidebar) {
+            this.$sidebar.style.width = "250px";
+            this.$sidebar.classList.add("sidebar-hover");
+            this.$sidebarActiveItem.classList.add("sidebar-active-item")
+            this.miniSidebar = false;
+        }
+        else {
+            this.$sidebar.style.width = "60px";
+            this.$sidebar.classList.remove("sidebar-hover")
+            this.$sidebarActiveItem.classList.remove("sidebar-active-item")
+            this.miniSidebar = true;
+        }
+    }
+
+    // Save a note to localStorage
+    saveNotes(){
+        localStorage.setItem("notes", JSON.stringify(this.notes));
+    }
+
+    // "Renders" -> basically saves & displays, React does this
+    render() {
+        this.saveNotes();
+        this.displayNotes();
     }
 
     // READ
@@ -175,7 +236,7 @@ class App {
             <span class="tooltip-text">Add Image</span>
             </div>
             <div class="tooltip">
-            <span class="material-symbols-outlined hover small-icon"
+            <span class="material-symbols-outlined hover small-icon archive"
                 >archive</span
             >
             <span class="tooltip-text">Archive</span>

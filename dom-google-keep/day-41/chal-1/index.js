@@ -1,29 +1,19 @@
-// Button and click event for Input 1
-const btnOne = document.querySelector("#btn1");
-btnOne.addEventListener("click",() => setFocus("input1"));
+// JavaScript Code
 
-// Button and click event for Input 2
-const btnTwo = document.querySelector("#btn2");
-btnTwo.addEventListener("click",() => setFocus("input2"));
+// 1. Retrieve the input field:
+const inputField = document.getElementById("inputField");
 
-// Button and click event for Input 3
-const btnThree = document.querySelector("#btn3");
-btnThree.addEventListener("click",() => setFocus("input3"));
+// 2. Retrieve the assign button:
+const assignButton = document.getElementById("assignButton");
 
-// setFocus funtion
-function setFocus(elementId) {
+// 3. Retrieve the displayed value element:
+const displayedValue = document.getElementById("displayedValue");
 
-    // Target element
-    const targetElement = document.getElementById(elementId);
+// 4. Add click event listener to the button:
+assignButton.addEventListener("click", () => {
+    // a. Retrieve the input value:
+    const inputValue = inputField.value;
 
-    // If else statement
-    if (targetElement) {
-        // Apply focus() method
-        targetElement.focus();
-
-    } else {
-        // Log an error message
-        console.log("Element not found");
-
-    }
-}
+    // b. Assign the input value:
+    displayedValue.textContent = inputValue;
+});
