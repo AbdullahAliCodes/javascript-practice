@@ -1,0 +1,12 @@
+/* CSS Styling  */
+div {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 10px;
+  }
+  
+  input {
+    padding: 6px;
+  }
+  
