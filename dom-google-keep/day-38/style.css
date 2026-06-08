@@ -88,6 +88,18 @@ input:focus {
   margin-left: 10px;
 }
 
+.profile-actions-area {
+  display: flex;
+}
+
+.profile-actions-area {
+  display: flex;
+}
+
+.auth-user {
+  cursor: pointer;
+}
+
 /* MAIN SECTION STYLES */
 
 /* SIDEBAR  */
