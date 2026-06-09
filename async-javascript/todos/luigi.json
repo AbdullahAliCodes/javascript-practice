@@ -1,0 +1,20 @@
+[
+  {
+    "text": "play mariokart",
+    "author": "Luigi",
+    "points": 50,
+    "done": false
+  },
+  {
+    "text": "by some fish",
+    "author": "Luigi",
+    "points": 10,
+    "done": true
+  },
+  {
+    "text": "jump over gumba",
+    "author": "Luigi",
+    "points": 70,
+    "done": false
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "text": "play mariokart",
+    "author": "Shaun",
+    "points": 50,
+    "done": false
+  },
+  {
+    "text": "by some cows",
+    "author": "Shaun",
+    "points": 10,
+    "done": true
+  },
+  {
+    "text": "do the hokie pokie",
+    "author": "Shaun",
+    "points": 70,
+    "done": false
+  }
+]
