@@ -4,6 +4,9 @@ const loadContainer = document.getElementById("load-container");
 const loadProducts = async () => {
   loadContainer.textContent = "Loading products...";
   const response = await fetch("https://fakestoreapi.com/products");
+  if (!response.ok) {
+    throw new Error(`API failed with status ${response.status}`);
+  }
   const products = await response.json();
   return products;
 };
